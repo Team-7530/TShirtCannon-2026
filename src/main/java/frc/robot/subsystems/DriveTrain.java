@@ -12,6 +12,8 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.PersistMode;
+import com.revrobotics.ResetMode;
 import com.revrobotics.spark.*;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkBaseConfig;
@@ -78,10 +80,10 @@ public class DriveTrain extends SubsystemBase {
     LFconfig_.apply(globalConfig_).follow(leftMaster);
     RFconfig_.apply(globalConfig_).follow(rightMaster);
 
-    leftMaster.configure(globalConfig_, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
-    leftFollower.configure(LFconfig_, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
-    rightMaster.configure(RMconfig_, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
-    rightFollower.configure(RFconfig_, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
+    leftMaster.configure(globalConfig_, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    leftFollower.configure(LFconfig_, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    rightMaster.configure(RMconfig_, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    rightFollower.configure(RFconfig_, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     differentialDrive = new DifferentialDrive(leftMaster, rightMaster);
     addChild("Differential Drive", differentialDrive);
@@ -149,8 +151,8 @@ public class DriveTrain extends SubsystemBase {
     globalConfig_.idleMode(enabled ? SparkBaseConfig.IdleMode.kBrake : SparkBaseConfig.IdleMode.kCoast);
     RMconfig_.idleMode(enabled ? SparkBaseConfig.IdleMode.kBrake : SparkBaseConfig.IdleMode.kCoast);
 
-    leftMaster.configure(globalConfig_, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
-    rightMaster.configure(RMconfig_, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
+    leftMaster.configure(globalConfig_, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    rightMaster.configure(RMconfig_, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     
     // leftMaster.setNeutralMode(enabled ? NeutralMode.Brake : NeutralMode.Coast);
     // rightMaster.setNeutralMode(enabled ? NeutralMode.Brake : NeutralMode.Coast);

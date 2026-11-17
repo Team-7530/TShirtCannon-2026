@@ -94,6 +94,7 @@ public class LEDLights extends SubsystemBase {
   private GenericEntry colorWidgetEntry;
   private LEDColor currentColor = LEDColor.kOff;
 
+  @SuppressWarnings("removal")
   public LEDLights(boolean sim) {
     m_candle = sim ? null : new CANdle(Constants.kID_CANdle);
 
@@ -198,38 +199,47 @@ public class LEDLights extends SubsystemBase {
   }
 
   /* Wrappers so we can access the CANdle from the subsystem */
+  @SuppressWarnings("removal")
   public double getVbat() {
     return m_candle != null ? m_candle.getBusVoltage() : 0;
   }
 
+  @SuppressWarnings("removal")
   public double get5V() {
     return m_candle != null ? m_candle.get5VRailVoltage() : 0;
   }
 
+  @SuppressWarnings("removal")
   public double getCurrent() {
     return m_candle != null ? m_candle.getCurrent() : 0;
   }
 
+  @SuppressWarnings("removal")
   public double getTemperature() {
     return m_candle != null ? m_candle.getTemperature() : 0;
   }
 
+  @SuppressWarnings("removal")
   public void configBrightness(double percent) {
     if (m_candle != null) m_candle.configBrightnessScalar(percent, 0);
   }
 
+  @SuppressWarnings("removal")
   public void configLos(boolean disableWhenLos) {
     if (m_candle != null) m_candle.configLOSBehavior(disableWhenLos, 0);
   }
 
+  @SuppressWarnings("removal")
   public void configLedType(LEDStripType type) {
     if (m_candle != null) m_candle.configLEDType(type, 0);
   }
 
+  @SuppressWarnings("removal")
   public void configStatusLedBehavior(boolean offWhenActive) {
     if (m_candle != null) m_candle.configStatusLedState(offWhenActive, 0);
   }
 
+  @SuppressWarnings("removal")
   public void changeAnimation(AnimationTypes toChange, LEDColor color) {
     m_currentAnimation = toChange;
 
@@ -307,6 +317,7 @@ public class LEDLights extends SubsystemBase {
     // System.out.println("Changed to " + m_currentAnimation.toString());
   }
 
+  @SuppressWarnings("removal")
   @Override
   public void periodic() {
     // Put code here to be run every loop
@@ -332,16 +343,19 @@ public class LEDLights extends SubsystemBase {
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  @SuppressWarnings("removal")
   public void runLights(int red, int green, int blue, int white, int start, int count) {
     if (m_candle != null) m_candle.setLEDs(red, green, blue, white, start, count);
     currentColor = new LEDColor(red, green, blue);
   }
 
+  @SuppressWarnings("removal")
   public void runLights(int red, int green, int blue) {
     if (m_candle != null) m_candle.setLEDs(red, green, blue);
     currentColor = new LEDColor(red, green, blue);
   }
 
+  @SuppressWarnings("removal")
   public void runLights(LEDColor color) {
     if (m_candle != null)
       m_candle.setLEDs(
@@ -349,6 +363,7 @@ public class LEDLights extends SubsystemBase {
     currentColor = color;
   }
 
+  @SuppressWarnings("removal")
   public void setOnboardLights(LEDColor color) {
     if (m_candle != null) {
       int start = Math.min(color.startIndex, 7);
@@ -358,6 +373,7 @@ public class LEDLights extends SubsystemBase {
     currentColor = color;
   }
 
+  @SuppressWarnings("removal")
   public void setStripLights(LEDColor color) {
     if (m_candle != null) {
       int start = Math.max(8 + color.startIndex, 8);
